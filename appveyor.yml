@@ -27,7 +27,7 @@ build_script:
         python script\create-dist.py
       } else {
         Write-Output "Running debug build"
-        python script\bootstrap.py --target_arch=$env:TARGET_ARCH --dev
+        python script\bootstrap.py
         python script\build.py -c D
       }
       if ($? -ne 'True') {
