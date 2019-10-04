@@ -143,103 +143,103 @@ build-defaults: &build-defaults
 
 version: 2
 jobs:
-  electron-linux-arm:
-    environment:
-      TARGET_ARCH: arm
-    <<: *build-defaults
-    resource_class: 2xlarge
+  # electron-linux-arm:
+  #   environment:
+  #     TARGET_ARCH: arm
+  #   <<: *build-defaults
+  #   resource_class: 2xlarge
 
-  electron-linux-arm-test:
-    machine: true
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace/project/out
-      - checkout
-      - run:
-          name: Test in ARM docker container
-          command: |
-            if [ "$ELECTRON_RELEASE" != "1" ]; then
-              docker run --rm --privileged multiarch/qemu-user-static:register --reset
-              docker run -it \
-              --mount type=bind,source=/tmp/workspace,target=/tmp/workspace \
-              --rm electronbuilds/electronarm7:0.0.5 > version.txt
-              cat version.txt
-              if grep -q `script/get-version.py` version.txt; then
-                echo "Versions match"
-              else
-                echo "Versions do not match"
-                exit 1
-              fi
-            else
-              echo "Skipping test for release build"
-            fi
+  # electron-linux-arm-test:
+  #   machine: true
+  #   steps:
+  #     - attach_workspace:
+  #         at: /tmp/workspace/project/out
+  #     - checkout
+  #     - run:
+  #         name: Test in ARM docker container
+  #         command: |
+  #           if [ "$ELECTRON_RELEASE" != "1" ]; then
+  #             docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  #             docker run -it \
+  #             --mount type=bind,source=/tmp/workspace,target=/tmp/workspace \
+  #             --rm electronbuilds/electronarm7:0.0.5 > version.txt
+  #             cat version.txt
+  #             if grep -q `script/get-version.py` version.txt; then
+  #               echo "Versions match"
+  #             else
+  #               echo "Versions do not match"
+  #               exit 1
+  #             fi
+  #           else
+  #             echo "Skipping test for release build"
+  #           fi
 
-  electron-linux-arm-release-nightly:
-    environment:
-      TARGET_ARCH: arm
-      RUN_RELEASE_BUILD: true
-    <<: *build-defaults
-    resource_class: 2xlarge
+  # electron-linux-arm-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: arm
+  #     RUN_RELEASE_BUILD: true
+  #   <<: *build-defaults
+  #   resource_class: 2xlarge
 
-  electron-linux-arm64:
-    environment:
-      TARGET_ARCH: arm64
-    <<: *build-defaults
-    resource_class: 2xlarge
+  # electron-linux-arm64:
+  #   environment:
+  #     TARGET_ARCH: arm64
+  #   <<: *build-defaults
+  #   resource_class: 2xlarge
 
-  electron-linux-arm64-test:
-    machine: true
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace/project/out
-      - checkout
-      - run:
-          name: Test in ARM64 docker container
-          command: |
-            if [ "$ELECTRON_RELEASE" != "1" ]; then
-              docker run --rm --privileged multiarch/qemu-user-static:register --reset
-              docker run -it \
-              --mount type=bind,source=/tmp/workspace,target=/tmp/workspace \
-              --rm electronbuilds/electronarm64:0.0.6 > version.txt
-              cat version.txt
-              if grep -q `script/get-version.py` version.txt; then
-                echo "Versions match"
-              else
-                echo "Versions do not match"
-                exit 1
-              fi
-            else
-              echo "Skipping test for release build"
-            fi
+  # electron-linux-arm64-test:
+  #   machine: true
+  #   steps:
+  #     - attach_workspace:
+  #         at: /tmp/workspace/project/out
+  #     - checkout
+  #     - run:
+  #         name: Test in ARM64 docker container
+  #         command: |
+  #           if [ "$ELECTRON_RELEASE" != "1" ]; then
+  #             docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  #             docker run -it \
+  #             --mount type=bind,source=/tmp/workspace,target=/tmp/workspace \
+  #             --rm electronbuilds/electronarm64:0.0.6 > version.txt
+  #             cat version.txt
+  #             if grep -q `script/get-version.py` version.txt; then
+  #               echo "Versions match"
+  #             else
+  #               echo "Versions do not match"
+  #               exit 1
+  #             fi
+  #           else
+  #             echo "Skipping test for release build"
+  #           fi
 
-  electron-linux-arm64-release-nightly:
-    environment:
-      TARGET_ARCH: arm64
-      RUN_RELEASE_BUILD: true
-    <<: *build-defaults
-    resource_class: 2xlarge
+  # electron-linux-arm64-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: arm64
+  #     RUN_RELEASE_BUILD: true
+  #   <<: *build-defaults
+  #   resource_class: 2xlarge
 
-  electron-linux-ia32:
-    environment:
-      TARGET_ARCH: ia32
-      DISPLAY: ':99.0'
-      RUN_TESTS: true
-      RUN_HEADLESS_TESTS: true
-    <<: *build-defaults
-    resource_class: xlarge
+  # electron-linux-ia32:
+  #   environment:
+  #     TARGET_ARCH: ia32
+  #     DISPLAY: ':99.0'
+  #     RUN_TESTS: true
+  #     RUN_HEADLESS_TESTS: true
+  #   <<: *build-defaults
+  #   resource_class: xlarge
 
-  electron-linux-ia32-release-nightly:
-    environment:
-      TARGET_ARCH: ia32
-      RUN_RELEASE_BUILD: true
-    <<: *build-defaults
-    resource_class: xlarge
+  # electron-linux-ia32-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: ia32
+  #     RUN_RELEASE_BUILD: true
+  #   <<: *build-defaults
+  #   resource_class: xlarge
 
-  electron-linux-mips64el:
-    environment:
-      TARGET_ARCH: mips64el
-    <<: *build-defaults
-    resource_class: xlarge
+  # electron-linux-mips64el:
+  #   environment:
+  #     TARGET_ARCH: mips64el
+  #   <<: *build-defaults
+  #   resource_class: xlarge
 
   electron-linux-x64:
     environment:
@@ -251,12 +251,12 @@ jobs:
     <<: *build-defaults
     resource_class: xlarge
 
-  electron-linux-x64-release-nightly:
-    environment:
-      TARGET_ARCH: x64
-      RUN_RELEASE_BUILD: true
-    <<: *build-defaults
-    resource_class: xlarge
+  # electron-linux-x64-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: x64
+  #     RUN_RELEASE_BUILD: true
+  #   <<: *build-defaults
+  #   resource_class: xlarge
 
   electron-osx-x64:
     environment:
@@ -268,88 +268,88 @@ jobs:
       xcode: "8.3.3"
     <<: *build-steps
 
-  electron-osx-x64-release-nightly:
-    environment:
-      TARGET_ARCH: x64
-      RUN_RELEASE_BUILD: true
-      INSTALL_MACOS_NODE: true
-    resource_class: large
-    macos:
-      xcode: "8.3.3"
-    <<: *build-steps
+  # electron-osx-x64-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: x64
+  #     RUN_RELEASE_BUILD: true
+  #     INSTALL_MACOS_NODE: true
+  #   resource_class: large
+  #   macos:
+  #     xcode: "8.3.3"
+  #   <<: *build-steps
 
-  electron-mas-x64:
-    environment:
-      TARGET_ARCH: x64
-      MAS_BUILD: 1
-      RUN_TESTS: true
-      INSTALL_MACOS_NODE: true
-    resource_class: large
-    macos:
-      xcode: "8.3.3"
-    <<: *build-steps
+  # electron-mas-x64:
+  #   environment:
+  #     TARGET_ARCH: x64
+  #     MAS_BUILD: 1
+  #     RUN_TESTS: true
+  #     INSTALL_MACOS_NODE: true
+  #   resource_class: large
+  #   macos:
+  #     xcode: "8.3.3"
+  #   <<: *build-steps
 
-  electron-mas-x64-release-nightly:
-    environment:
-      TARGET_ARCH: x64
-      MAS_BUILD: 1
-      RUN_RELEASE_BUILD: true
-      INSTALL_MACOS_NODE: true
-    resource_class: large
-    macos:
-      xcode: "8.3.3"
-    <<: *build-steps
+  # electron-mas-x64-release-nightly:
+  #   environment:
+  #     TARGET_ARCH: x64
+  #     MAS_BUILD: 1
+  #     RUN_RELEASE_BUILD: true
+  #     INSTALL_MACOS_NODE: true
+  #   resource_class: large
+  #   macos:
+  #     xcode: "8.3.3"
+  #   <<: *build-steps
 
 
 workflows:
   version: 2
-  build-arm:
-    jobs:
-      - electron-linux-arm
-      - electron-linux-arm-test:
-          requires:
-            - electron-linux-arm
-  build-arm64:
-    jobs:
-      - electron-linux-arm64
-      - electron-linux-arm64-test:
-          requires:
-            - electron-linux-arm64
-  build-ia32:
-    jobs:
-      - electron-linux-ia32
+  # build-arm:
+  #   jobs:
+  #     - electron-linux-arm
+  #     - electron-linux-arm-test:
+  #         requires:
+  #           - electron-linux-arm
+  # build-arm64:
+  #   jobs:
+  #     - electron-linux-arm64
+  #     - electron-linux-arm64-test:
+  #         requires:
+  #           - electron-linux-arm64
+  # build-ia32:
+  #   jobs:
+  #     - electron-linux-ia32
   build-x64:
     jobs:
       - electron-linux-x64
   build-osx-x64:
     jobs:
       - electron-osx-x64
-  build-mas-x64:
-    jobs:
-      - electron-mas-x64
+  # build-mas-x64:
+  #   jobs:
+  #     - electron-mas-x64
 
-  nightly-release-test:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
-                - 2-0-x
-                - 1-8-x
-                - 1-7-x
-    jobs:
-      - electron-linux-arm-release-nightly
-      - electron-linux-arm64-release-nightly
-      - electron-linux-ia32-release-nightly
-      - electron-linux-x64-release-nightly
+  # nightly-release-test:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0 0 * * *"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - 2-0-x
+  #               - 1-8-x
+  #               - 1-7-x
+  #   jobs:
+  #     - electron-linux-arm-release-nightly
+  #     - electron-linux-arm64-release-nightly
+  #     - electron-linux-ia32-release-nightly
+  #     - electron-linux-x64-release-nightly
 
-experimental:
-  notify:
-    branches:
-      only:
-        - master
-        - 2-0-x
-        - 1-8-x
-        - 1-7-x
+# experimental:
+#   notify:
+#     branches:
+#       only:
+#         - master
+#         - 2-0-x
+#         - 1-8-x
+#         - 1-7-x
